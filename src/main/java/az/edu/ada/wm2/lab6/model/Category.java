@@ -1,15 +1,16 @@
 package az.edu.ada.wm2.lab6.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
@@ -20,15 +21,6 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
-
-    public Category() {
-    }
-
-    public Category(UUID id, String name, Set<Product> products) {
-        this.id = id;
-        this.name = name;
-        this.products = products;
-    }
 
     public UUID getId() {
         return id;
