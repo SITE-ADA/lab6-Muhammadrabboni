@@ -4,7 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String productName;
     private BigDecimal price;
@@ -15,7 +23,6 @@ public class Product {
     }
 
     public Product(String productName, BigDecimal price, LocalDate expirationDate) {
-        this.id = UUID.randomUUID();
         this.productName = productName;
         this.price = price;
         this.expirationDate = expirationDate;
