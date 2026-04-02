@@ -3,6 +3,7 @@ package az.edu.ada.wm2.lab6.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -12,8 +13,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,8 +43,8 @@ private Set<Category> categories;
 
 
     // Constructors
-    public Product() {
-    }
+    //public Product() {
+    //}
 
     public Product(String productName, BigDecimal price, LocalDate expirationDate) {
         this.productName = productName;
@@ -88,6 +99,15 @@ private Set<Category> categories;
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+    
+    public static class ProductBuilder {
+    public ProductBuilder categories(List<Category> categories) {
+        this.categories = (categories == null)
+                ? null
+                : new java.util.HashSet<>(categories);
+        return this;
+    }
+}
 
     @Override
     public String toString() {
